@@ -1,5 +1,9 @@
 {
     "name": "tampere-weather-graphs",
     "version": "1.0.0",
-    "private": true
+    "private": true,
+    "repository": { 
+        "type" : "git",
+        "url" : "https://github.com/koristi/WeatherAPI.git"
+      }
   }
