@@ -180,8 +180,8 @@ function drawGraphs() {
             nameLocation: 'middle'
         },
         yAxis: {
-            min: '-30',
-            max: '30',
+            min: 'dataMin',
+            max: 'dataMax',
             name: "Celcius"
         },
         series: [{
@@ -198,16 +198,20 @@ function drawGraphs() {
         },
         tooltip: {},
         legend: {
-            data:['Wind Speed']
+            data:['Wind Speed (m/s)']
         },
         xAxis: {
+            name: "Time",
+            nameLocation: 'middle',
             type: 'time',
             maxInterval: 3600 * 1000 * 24
         },
-        yAxis: {},
+        yAxis: {
+            name: "m/s"
+        },
         series: [{
             name: 'Wind Speed',
-            type: 'line',
+            type: 'bar',
             data: winds,
             smooth: true
         }]
@@ -219,19 +223,22 @@ function drawGraphs() {
         },
         tooltip: {},
         legend: {
-            data:['Humidity']
+            data:['Humidity (Percentage)']
         },
         xAxis: {
+            name: "Time",
+            nameLocation: 'middle',
             type: 'time',
             maxInterval: 3600 * 1000 * 24
         },
         yAxis: {
-            min: 'dataMin',
+            name: "%",
+            min: '0',
             max: '100'
         },
         series: [{
             name: 'Humidity',
-            type: 'line',
+            type: 'bar',
             data: humids
         }]
     };
@@ -245,13 +252,17 @@ function drawGraphs() {
             data:['Clouds (Percent)']
         },
         xAxis: {
+            name: "Time",
+            nameLocation: 'middle',
             type: 'time',
             maxInterval: 3600 * 1000 * 24
         },
-        yAxis: {},
+        yAxis: {
+            name: "%"
+        },
         series: [{
             name: 'Clouds',
-            type: 'line',
+            type: 'bar',
             data: clouds
         }]
     };
