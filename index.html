@@ -1,0 +1,45 @@
+<html lang='en'>
+<head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+
+    <title>Graph Demo</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src='echarts.min.js'></script>
+    <script src='script.js'></script>
+
+    <script>
+        // var testData = [{
+        //     // PartitionKey: "Tampere",
+        //      RowKey: "2018-11-02T11:56:54.5454394Z",
+        //     // Timestamp: new Date("2018-11-02T11:56:54"),
+        //     // cloudsPercent: 75,
+        //     // country: "FI",
+        //      dt: 1541157600,
+        //     // humidity: 100,
+        //     // latitude: 61.5,
+        //     // longitude: 23.76,
+        //     // pressure: 1018,
+        //      temperature: 280.02
+        //     // weatherDesc: "light rain",
+        //     // weatherIcon: "10d",
+        //     // weatherId: 500,
+        //     // weatherMain: "Rain",
+        //     // windDeg: 120,
+        //     // windSpeed: 5.7
+        // }];
+    </script>
+</head>
+<body>
+    <button type="submit" id="Refresh" onclick="GetData();">Refresh</button>
+    <div class="graph" id="Temperature"></div>
+    <div class="graph" id="WindSpeed"></div>
+    <div class="graph" id="Humidity"></div>
+    <div class="graph" id="Clouds"></div>
+    <div class="graph" id="WeatherTypes"></div>
+    <div id="JSON"></div>
+</body>
+</html>
+
