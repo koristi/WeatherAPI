@@ -33,13 +33,22 @@
     </script>
 </head>
 <body>
-    <button type="submit" id="Refresh" onclick="GetData();">Refresh</button>
-    <div class="graph" id="Temperature"></div>
-    <div class="graph" id="WindSpeed"></div>
-    <div class="graph" id="Humidity"></div>
-    <div class="graph" id="Clouds"></div>
-    <div class="graph" id="WeatherTypes"></div>
-    <div id="JSON"></div>
+    <div id=bodyContainer>
+        <div id="buttonContainer">
+            <button type="button" id="Refresh" onclick="GetData();">Refresh</button>
+            <button type="button" id="TempButton" onclick="setVisible('Temperature');">Temperature</button>
+            <button type="button" id="WindButton" onclick="setVisible('WindSpeed');">Wind Speed</button>
+            <button type="button" id="HumiButton" onclick="setVisible('Humidity');">Humidity</button>
+            <button type="button" id="ClouButton" onclick="setVisible('Clouds');">Clouds</button>
+            <button type="submit" id="WeatButton" onclick="setVisible('WeatherTypes');">Weather Types</button>
+        </div>
+
+        <div class="graph" id="Temperature"></div>
+        <div class="graph" id="WindSpeed"></div>
+        <div class="graph" id="Humidity"></div>
+        <div class="graph" id="Clouds"></div>
+        <div class="graph" id="WeatherTypes"></div>
+    </div>
 </body>
 </html>
 

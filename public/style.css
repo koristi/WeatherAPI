@@ -1,11 +1,28 @@
 .graph
 {
-    height: 500px;
-    width: 1000px;
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
 }
 
 button
 {
     height: 40px;
-    width: 100px;
+    width: 120px;
+}
+
+#buttonContainer
+{
+    width: 800px;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+#bodyContainer
+{
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
 }
