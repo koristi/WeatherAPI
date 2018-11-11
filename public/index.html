@@ -37,7 +37,7 @@
 <body>
     <div id="bodyContainer">
         <div class="container">
-            <div class="btn-group" role="group">
+            <div class="btn-group" role="toolbar">
                 <button type="button" class="btn btn-secondary" id="TempButton" onclick="setVisible('Temperature');">Temperature</button>
                 <button type="button" class="btn btn-secondary" id="WindButton" onclick="setVisible('WindSpeed');">Wind Speed</button>
                 <button type="button" class="btn btn-secondary" id="HumiButton" onclick="setVisible('Humidity');">Humidity</button>
@@ -52,6 +52,7 @@
         <div class="graph" id="Clouds"></div>
         <div class="graph" id="WeatherTypes"></div>
 
+        <p id="countdown"></p>
         <button id="refreshBtn" type="button" class="btn btn-primary btn-lg" id="Refresh" onclick="getDataForCharts();">Refresh</button>
     </div>
 </body>

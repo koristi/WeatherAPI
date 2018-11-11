@@ -4,6 +4,8 @@ global.$ = require("jquery");
 require('bootstrap');
 require('popper.js');
 
+var countDownDate;
+
 var uri = "https://prod-23.northeurope.logic.azure.com:443/workflows/567da3699ec840fdb9a3a24a256933f3/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2-ThVVPxBbVEHQUEwLU9EZHc1MlsEsfvnmx-UZvl15I";
 
 var data = 
@@ -31,7 +33,8 @@ var weatherTypeChart;
 
 const tempOptions = {
     title: {
-        text: 'Temperature'
+        text: 'Temperature',
+        left: '45%'
     },
     tooltip: {},
     legend: {
@@ -69,7 +72,8 @@ const tempOptions = {
 
 const windOptions = {
     title: {
-        text: 'Wind Speed'
+        text: 'Wind Speed',
+        left: '45%'
     },
     tooltip: {},
     legend: {
@@ -94,7 +98,8 @@ const windOptions = {
 
 const humidOptions = {
     title: {
-        text: 'Humidity'
+        text: 'Humidity',
+        left: '45%'
     },
     tooltip: {},
     legend: {
@@ -119,7 +124,8 @@ const humidOptions = {
 
 const cloudOptions = {
     title: {
-        text: 'Clouds'
+        text: 'Clouds',
+        left: '45%'
     },
     tooltip: {},
     legend: {
@@ -144,7 +150,8 @@ const cloudOptions = {
 
 const weatherTypeOptions = {
     title: {
-        text: 'Weather'
+        text: 'Weather',
+        left: '45%'
     },
     tooltip: {},
     legend: {
@@ -365,20 +372,50 @@ global.getDataForCharts = function() {
         dataType: "json",
         success: function (response) {
             updateData(response);
+            countDownDate = getTimeAfterMinutes(10);
         }
     });
 }
 
+function getTimeAfterMinutes(minutes) {
+    var newDate = new Date(Date.now()).getTime() + minutes*60000;
+    return newDate;
+}
+
+var setRefreshCountDown = function setRefreshCountDown() {
+
+    // Get todays date and time
+    var now = new Date(Date.now()).getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element
+    document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    // If the count down is finished, add time
+    if (distance < 0) {
+        updateData();
+        countDownDate = getTimeAfterMinutes(10);
+    }
+}
+
 $( document ).ready(function() {
+
+    countDownDate = getTimeAfterMinutes(10);
 
     drawGraphs();
 
     setVisible("Temperature");
 
-    setInterval(function() {
-        updateData(); 
-    }, 600000);
-    
+    setInterval(setRefreshCountDown, 1000);
 });
 
 global.setVisible = function(chartName) {
