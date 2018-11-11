@@ -1,4 +1,8 @@
 /*jshint esversion: 6 */
+global.jQuery = require("jquery");
+global.$ = require("jquery");
+require('bootstrap');
+require('popper.js');
 
 var uri = "https://prod-23.northeurope.logic.azure.com:443/workflows/567da3699ec840fdb9a3a24a256933f3/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2-ThVVPxBbVEHQUEwLU9EZHc1MlsEsfvnmx-UZvl15I";
 
@@ -7,6 +11,10 @@ var data =
     "dateEnd": yyyymmdd(),
     "dateStart": "2018-11-07T00:00:00"
 };
+
+function setEndDateForData(date) {
+
+}
 
 var legends = [];
 var winds = [];
@@ -348,7 +356,7 @@ function drawGraphs() {
     weatherTypeChart.setOption(weatherTypeOptions);
 }
 
-function GetData() {
+global.getDataForCharts = function() {
     $.ajax({
         url: uri,
         type: "POST",
@@ -373,7 +381,7 @@ $( document ).ready(function() {
     
 });
 
-function setVisible(chartName) {
+global.setVisible = function(chartName) {
     $('.graph:visible').css("display", "none");
     $('#' + chartName).css("display", "block");
 }

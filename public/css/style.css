@@ -1,0 +1,20 @@
+.graph
+{
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+}
+
+.container
+{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+}
+
+#bodyContainer
+{
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+}
