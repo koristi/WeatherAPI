@@ -32,27 +32,30 @@ var cloudChart;
 var weatherTypeChart;
 
 const tempOptions = {
-    title: {
-        text: 'Temperature',
-        left: '45%'
+    tooltip: {
+        trigger: 'axis',
+        position: function (pt) {
+            return [pt[0], '10%'];
+        }
     },
-    tooltip: {},
-    legend: {
-        data: ['Temperature (Celsius)']
-    },
+    dataZoom: [
+        {
+            id: 'dataZoomX',
+            type: 'inside',
+            xAxisIndex: [0],
+            filterMode: 'filter'
+        }
+    ],
     xAxis: {
         type: 'time',
-        minInterval: 3600 * 1000 * 24,
+        minInterval: 3600 * 1000,
         maxInterval: 3600 * 1000 * 24,
-        name: "Time",
-        nameLocation: 'middle',
         splitLine: {
-            show: true
+            show: false
         },
         splitArea: {
-            show: true
-        },
-        z: 10
+            show: false
+        }
     },
     yAxis: {
         name: "Celcius",
@@ -64,29 +67,37 @@ const tempOptions = {
     },
     series: [{
         name: 'Temperature',
-        type: 'bar',
+        type: 'line',
+        symbol: 'none',
+        sampling: 'average',
+        areaStyle: {
+            color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                    offset: 0, color: 'red' // color at 0% position
+                }, {
+                    offset: 1, color: 'blue' // color at 100% position
+                }],
+                globalCoord: false // false by default
+            }
+        },
         data: temps,
         smooth: true
     }]
 };
 
 const windOptions = {
-    title: {
-        text: 'Wind Speed',
-        left: '45%'
-    },
     tooltip: {},
-    legend: {
-        data: ['Wind Speed (m/s)']
-    },
     xAxis: {
-        name: "Time",
-        nameLocation: 'middle',
         type: 'time',
         maxInterval: 3600 * 1000 * 24
     },
     yAxis: {
-        name: "m/s",
+        name: "Wind (m/s)",
         boundaryGap: [0, '100%']
     },
     series: [{
@@ -97,22 +108,13 @@ const windOptions = {
 };
 
 const humidOptions = {
-    title: {
-        text: 'Humidity',
-        left: '45%'
-    },
     tooltip: {},
-    legend: {
-        data: ['Humidity (Percentage)']
-    },
     xAxis: {
-        name: "Time",
-        nameLocation: 'middle',
         type: 'time',
         maxInterval: 3600 * 1000 * 24
     },
     yAxis: {
-        name: "%",
+        name: "Humidity %",
         boundaryGap: [0, '100%'],
     },
     series: [{
@@ -123,22 +125,13 @@ const humidOptions = {
 };
 
 const cloudOptions = {
-    title: {
-        text: 'Clouds',
-        left: '45%'
-    },
     tooltip: {},
-    legend: {
-        data: ['Clouds (Percent)']
-    },
     xAxis: {
-        name: "Time",
-        nameLocation: 'middle',
         type: 'time',
         maxInterval: 3600 * 1000 * 24
     },
     yAxis: {
-        name: "%",
+        name: "Clouds %",
         boundaryGap: [0, '100%']
     },
     series: [{
@@ -149,24 +142,19 @@ const cloudOptions = {
 };
 
 const weatherTypeOptions = {
-    title: {
-        text: 'Weather',
-        left: '45%'
-    },
     tooltip: {},
     legend: {
         type: 'scroll',
-        orient: 'vertical',
+        orient: 'horizontal',
         right: 10,
         top: 20,
         bottom: 20,
         data: legends
     },
     series: [{
-        name: 'Weather',
         type: 'pie',
         radius: '55%',
-        center: ['40%', '50%'],
+        center: ['50%', '50%'],
         itemStyle: {
             emphasis: {
                 shadowBlur: 10,
@@ -174,8 +162,7 @@ const weatherTypeOptions = {
                 shadowColor: 'rgba(0, 0, 0, 0.5)'
             }
         },
-        data: weatherTypes,
-        roseType: 'radius'
+        data: weatherTypes
     }]
 };
 
@@ -372,14 +359,13 @@ global.getDataForCharts = function() {
         dataType: "json",
         success: function (response) {
             updateData(response);
-            countDownDate = getTimeAfterMinutes(10);
+            setCountdownTimeAfterMinutes(10);
         }
     });
 }
 
-function getTimeAfterMinutes(minutes) {
-    var newDate = new Date(Date.now()).getTime() + minutes*60000;
-    return newDate;
+function setCountdownTimeAfterMinutes(minutes) {
+    countDownDate = new Date(Date.now()).getTime() + minutes*60000;
 }
 
 var setRefreshCountDown = function setRefreshCountDown() {
@@ -397,19 +383,19 @@ var setRefreshCountDown = function setRefreshCountDown() {
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Display the result in the element
-    document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
+    document.getElementById("countdown").innerHTML = "Autorefresh in "
+    + minutes + " minutes " + seconds + " seconds.";
 
     // If the count down is finished, add time
     if (distance < 0) {
-        updateData();
-        countDownDate = getTimeAfterMinutes(10);
+        getDataForCharts();
+        setCountdownTimeAfterMinutes(10);
     }
 }
 
 $( document ).ready(function() {
 
-    countDownDate = getTimeAfterMinutes(10);
+    setCountdownTimeAfterMinutes(10);
 
     drawGraphs();
 

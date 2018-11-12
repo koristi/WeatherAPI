@@ -37,12 +37,12 @@
 <body>
     <div id="bodyContainer">
         <div class="container">
-            <div class="btn-group" role="toolbar">
-                <button type="button" class="btn btn-secondary" id="TempButton" onclick="setVisible('Temperature');">Temperature</button>
-                <button type="button" class="btn btn-secondary" id="WindButton" onclick="setVisible('WindSpeed');">Wind Speed</button>
-                <button type="button" class="btn btn-secondary" id="HumiButton" onclick="setVisible('Humidity');">Humidity</button>
-                <button type="button" class="btn btn-secondary" id="ClouButton" onclick="setVisible('Clouds');">Clouds</button>
-                <button type="button" class="btn btn-secondary" id="WeatButton" onclick="setVisible('WeatherTypes');">Weather Types</button>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-secondary btn-sm" id="TempButton" onclick="setVisible('Temperature');">Temperature</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="WindButton" onclick="setVisible('WindSpeed');">Wind Speed</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="HumiButton" onclick="setVisible('Humidity');">Humidity</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="ClouButton" onclick="setVisible('Clouds');">Clouds</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="WeatButton" onclick="setVisible('WeatherTypes');">Weather Types</button>
             </div>
         </div>
 
@@ -52,8 +52,10 @@
         <div class="graph" id="Clouds"></div>
         <div class="graph" id="WeatherTypes"></div>
 
-        <p id="countdown"></p>
+        
         <button id="refreshBtn" type="button" class="btn btn-primary btn-lg" id="Refresh" onclick="getDataForCharts();">Refresh</button>
+        <p></p>
+        <p id="countdown"></p>
     </div>
 </body>
 </html>
