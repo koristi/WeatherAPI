@@ -17006,7 +17006,6 @@ const weatherTypeOptions = {
     legend: {
         type: 'scroll',
         orient: 'horizontal',
-        right: 10,
         top: 20,
         bottom: 20,
         data: legends
