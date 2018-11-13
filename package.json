@@ -1,18 +1,32 @@
 {
-    "name": "tampere-weather-graphs",
-    "version": "1.0.0",
-    "private": true,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/koristi/WeatherAPI.git"
-    },
-    "scripts": {
-        "build": "npm install"
-    },
-    "dependencies": {
-        "@types/bootstrap": "^4.1.2",
-        "@types/echarts": "^4.1.1",
-        "bootstrap": "^4.1.3",
-        "jquery": "^3.3.1"
-    }
+  "name": "tampere-weather-graphs",
+  "version": "1.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koristi/WeatherAPI.git"
+  },
+  "scripts": {
+    "build": "npm install"
+  },
+  "dependencies": {
+    "@types/bootstrap": "^4.1.2",
+    "@types/echarts": "^4.1.1",
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1",
+    "mysql": "^2.16.0"
+  },
+  "description": "Integrate with a Logic App to fetch Tampere weather data.",
+  "bugs": {
+    "url": "https://github.com/koristi/WeatherAPI/issues"
+  },
+  "homepage": "https://github.com/koristi/WeatherAPI#readme",
+  "main": "app.js",
+  "devDependencies": {},
+  "keywords": [
+    "weather",
+    "tampere"
+  ],
+  "author": "timo@koriseva.work",
+  "license": "ISC"
 }
