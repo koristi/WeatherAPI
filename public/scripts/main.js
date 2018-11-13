@@ -587,13 +587,10 @@ var setRefreshCountDown = function setRefreshCountDown() {
 }
 
 $( document ).ready(function() {
-
+    $("#countdown").css("display", "none");
     setCountdownTimeAfterMinutes(10);
-
     drawGraphs();
-
-    setVisible("Temperature");
-
+    setVisible("Info");
     setInterval(setRefreshCountDown, 1000);
 });
 

@@ -47,14 +47,17 @@
             </div>
         </div>
 
+        <div class="graph" id="Info">
+            <p>Tämä on testi.</p>
+            <button type="button" class="btn btn-dark btn-lg" onclick="getDataForCharts(); setVisible('Temperature'); $('#countdown').css('display', 'block');">Show Data</button>
+        </div>
         <div class="graph" id="Temperature"></div>
         <div class="graph" id="WindSpeed"></div>
         <div class="graph" id="Humidity"></div>
         <div class="graph" id="Clouds"></div>
         <div class="graph" id="WeatherTypes"></div>
 
-        
-        <button id="refreshBtn" type="button" class="btn btn-dark btn-lg" id="Refresh" onclick="getDataForCharts();">Refresh</button>
+        <!--<button id="refreshBtn" type="button" class="btn btn-dark btn-lg" id="Refresh" onclick="getDataForCharts();">Refresh</button>-->
         <p></p>
         <p id="countdown"></p>
     </div>

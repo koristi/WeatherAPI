@@ -2,6 +2,7 @@ body
 {
     background-color: teal;
 }
+
 .graph
 {
     width: 80%;
@@ -24,6 +25,11 @@ body
 }
 
 #countdown
+{
+    color: white;
+}
+
+#Info
 {
     color: white;
 }
