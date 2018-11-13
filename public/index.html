@@ -6,8 +6,9 @@
 
     <title>Graph Demo</title>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    
     
     <script src='scripts/echarts.min.js'></script>
     <script src="scripts/bundle.js"></script>
@@ -38,11 +39,11 @@
     <div id="bodyContainer">
         <div class="container">
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-secondary btn-sm" id="TempButton" onclick="setVisible('Temperature');">Temperature</button>
-                <button type="button" class="btn btn-secondary btn-sm" id="WindButton" onclick="setVisible('WindSpeed');">Wind Speed</button>
-                <button type="button" class="btn btn-secondary btn-sm" id="HumiButton" onclick="setVisible('Humidity');">Humidity</button>
-                <button type="button" class="btn btn-secondary btn-sm" id="ClouButton" onclick="setVisible('Clouds');">Clouds</button>
-                <button type="button" class="btn btn-secondary btn-sm" id="WeatButton" onclick="setVisible('WeatherTypes');">Weather Types</button>
+                <button type="button" class="btn btn-dark btn-sm" id="TempButton" onclick="setVisible('Temperature');">Temperature</button>
+                <button type="button" class="btn btn-dark btn-sm" id="WindButton" onclick="setVisible('WindSpeed');">Wind Speed</button>
+                <button type="button" class="btn btn-dark btn-sm" id="HumiButton" onclick="setVisible('Humidity');">Humidity</button>
+                <button type="button" class="btn btn-dark btn-sm" id="ClouButton" onclick="setVisible('Clouds');">Clouds</button>
+                <button type="button" class="btn btn-dark btn-sm" id="WeatButton" onclick="setVisible('WeatherTypes');">Weather Types</button>
             </div>
         </div>
 
@@ -53,7 +54,7 @@
         <div class="graph" id="WeatherTypes"></div>
 
         
-        <button id="refreshBtn" type="button" class="btn btn-primary btn-lg" id="Refresh" onclick="getDataForCharts();">Refresh</button>
+        <button id="refreshBtn" type="button" class="btn btn-dark btn-lg" id="Refresh" onclick="getDataForCharts();">Refresh</button>
         <p></p>
         <p id="countdown"></p>
     </div>

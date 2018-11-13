@@ -16915,6 +16915,11 @@ const tempOptions = {
         },
         splitArea: {
             show: false
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#eee'
+            }
         }
     },
     yAxis: {
@@ -16923,6 +16928,11 @@ const tempOptions = {
         maxInterval: 1,
         splitLine: {
             show: true
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#eee'
+            }
         }
     },
     series: [{
@@ -16946,58 +16956,231 @@ const tempOptions = {
             }
         },
         data: temps,
-        smooth: true
+        smooth: true,
+        lineStyle: {
+            normal: {
+                color: 'rgb(255, 70, 131)',
+                width: 1
+            }
+        }
     }]
 };
 
 const windOptions = {
-    tooltip: {},
+    tooltip: {
+        trigger: 'axis',
+        position: function (pt) {
+            return [pt[0], '10%'];
+        }
+    },
+    dataZoom: [
+        {
+            id: 'dataZoomX',
+            type: 'inside',
+            xAxisIndex: [0],
+            filterMode: 'filter'
+        }
+    ],
     xAxis: {
         type: 'time',
-        maxInterval: 3600 * 1000 * 24
+        minInterval: 3600 * 1000,
+        maxInterval: 3600 * 1000 * 24,
+        splitLine: {
+            show: false
+        },
+        splitArea: {
+            show: false
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#eee'
+            }
+        }
     },
     yAxis: {
         name: "Wind (m/s)",
-        boundaryGap: [0, '100%']
+        boundaryGap: [0, '100%'],
+        maxInterval: 0.5,
+        splitLine: {
+            show: true
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#eee'
+            }
+        }
     },
     series: [{
         name: 'Wind Speed',
-        type: 'bar',
-        data: winds
+        type: 'line',
+        data: winds,
+        symbol: 'none',
+        sampling: 'average',
+        areaStyle: {
+            color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                    offset: 0, color: 'red' // color at 0% position
+                }, {
+                    offset: 1, color: 'green' // color at 100% position
+                }],
+                globalCoord: false // false by default
+            }
+        },
+        lineStyle: {
+            normal: {
+                color: 'rgb(255, 70, 131)',
+                width: 1
+            }
+        }
     }]
 };
 
 const humidOptions = {
-    tooltip: {},
+    tooltip: {
+        trigger: 'axis',
+        position: function (pt) {
+            return [pt[0], '10%'];
+        }
+    },
+    dataZoom: [
+        {
+            id: 'dataZoomX',
+            type: 'inside',
+            xAxisIndex: [0],
+            filterMode: 'filter'
+        }
+    ],
     xAxis: {
         type: 'time',
-        maxInterval: 3600 * 1000 * 24
+        minInterval: 3600 * 1000,
+        maxInterval: 3600 * 1000 * 24,
+        splitLine: {
+            show: false
+        },
+        splitArea: {
+            show: false
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#eee'
+            }
+        }
     },
     yAxis: {
         name: "Humidity %",
+        max: 100,
+        maxInterval: 5,
         boundaryGap: [0, '100%'],
+        axisLine: {
+            lineStyle: {
+                color: '#eee'
+            }
+        }
     },
     series: [{
         name: 'Humidity',
-        type: 'bar',
-        data: humids
+        type: 'line',
+        data: humids,
+        symbol: 'none',
+        sampling: 'average',
+        areaStyle: {
+            color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                    offset: 0, color: 'blue' // color at 0% position
+                }, {
+                    offset: 1, color: 'white' // color at 100% position
+                }],
+                globalCoord: false // false by default
+            }
+        },
+        lineStyle: {
+            normal: {
+                color: 'blue',
+                width: 1
+            }
+        },
     }]
 };
 
 const cloudOptions = {
-    tooltip: {},
+    tooltip: {
+        trigger: 'axis',
+        position: function (pt) {
+            return [pt[0], '10%'];
+        }
+    },
+    dataZoom: [
+        {
+            id: 'dataZoomX',
+            type: 'inside',
+            xAxisIndex: [0],
+            filterMode: 'filter'
+        }
+    ],
     xAxis: {
         type: 'time',
-        maxInterval: 3600 * 1000 * 24
+        minInterval: 3600 * 1000,
+        maxInterval: 3600 * 1000 * 24,
+        splitLine: {
+            show: false
+        },
+        splitArea: {
+            show: false
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#eee'
+            }
+        }
     },
     yAxis: {
         name: "Clouds %",
-        boundaryGap: [0, '100%']
+        max: 100,
+        maxInterval: 5,
+        boundaryGap: [0, '100%'],
+        axisLine: {
+            lineStyle: {
+                color: '#eee'
+            }
+        }
     },
     series: [{
         name: 'Clouds',
-        type: 'bar',
-        data: clouds
+        type: 'line',
+        data: clouds,
+        symbol: 'none',
+        lineStyle: {
+            normal: {
+                color: 'white',
+                width: 1
+            }
+        },
+        sampling: 'average',
+        areaStyle: {
+            color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                    offset: 0, color: 'grey' // color at 0% position
+                }, {
+                    offset: 1, color: 'blue' // color at 100% position
+                }],
+                globalCoord: false // false by default
+            }
+        }
     }]
 };
 
@@ -17008,7 +17191,11 @@ const weatherTypeOptions = {
         orient: 'horizontal',
         top: 20,
         bottom: 20,
-        data: legends
+        data: legends,
+        textStyle: {
+            color: '#fff',
+            fontSize: 12
+        }
     },
     series: [{
         type: 'pie',
@@ -17021,7 +17208,14 @@ const weatherTypeOptions = {
                 shadowColor: 'rgba(0, 0, 0, 0.5)'
             }
         },
-        data: weatherTypes
+        data: weatherTypes,
+        label: {
+            normal: {
+                textStyle: {
+                    color: 'white'
+                }
+            }
+        },
     }]
 };
 
