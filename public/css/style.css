@@ -14,6 +14,7 @@ body
 {
     margin-top: 2%;
     margin-bottom: 2%;
+    display: none;
 }
 
 #bodyContainer
@@ -29,7 +30,13 @@ body
     color: white;
 }
 
-#Info
+#Info .card
 {
-    color: white;
+    margin-top: 30%;
+    background-color: gainsboro;
+}
+
+.progress
+{
+    display: none;
 }

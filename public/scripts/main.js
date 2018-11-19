@@ -554,8 +554,14 @@ global.getDataForCharts = function() {
             updateData(response);
             setCountdownTimeAfterMinutes(10);
         }
+    }).then(function () {
+        $('.progress').css('display', 'none');
+        setVisible('Temperature');
+        $('.container').css('display', 'block');
+        $("#countdown").css("display", "block");
+        $("small").css("display","block");
     });
-}
+};
 
 function setCountdownTimeAfterMinutes(minutes) {
     countDownDate = new Date(Date.now()).getTime() + minutes*60000;
@@ -576,15 +582,14 @@ var setRefreshCountDown = function setRefreshCountDown() {
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Display the result in the element
-    document.getElementById("countdown").innerHTML = "Autorefresh in "
-    + minutes + " minutes " + seconds + " seconds.";
+    document.getElementById("countdown").innerHTML = "Autorefresh in " + minutes + " minutes " + seconds + " seconds.";
 
     // If the count down is finished, add time
     if (distance < 0) {
         getDataForCharts();
         setCountdownTimeAfterMinutes(10);
     }
-}
+};
 
 $( document ).ready(function() {
     $("#countdown").css("display", "none");
@@ -597,4 +602,9 @@ $( document ).ready(function() {
 global.setVisible = function(chartName) {
     $('.graph:visible').css("display", "none");
     $('#' + chartName).css("display", "block");
-}
+};
+
+global.initApp = function () {
+    $('.progress').css('display', 'flex');
+    getDataForCharts();
+};
