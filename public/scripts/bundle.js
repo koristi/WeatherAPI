@@ -16874,8 +16874,31 @@ var data =
     "dateStart": "2018-11-07T00:00:00"
 };
 
-function setEndDateForData(date) {
+function getLatestData(response) {
+    var time = new Date(1900, 1, 1);
+    var temp;
+    var clouds;
+    var humidity;
+    var weatherType;
+    var windSpeed;
+    var icon;
 
+    response.forEach(weather => {
+        var newDate = new Date(weather.Timestamp);
+        if (newDate > time)
+        {
+            time = newDate;
+            temp = weather.temperature;
+            clouds = weather.cloudsPercent;
+            weatherType = weather.weatherDesc;
+            windSpeed = weather.windSpeed;
+            humidity = weather.humidity;
+            icon = weather.weatherIcon;
+        }
+    });
+
+    $("#currentWeather").html("<img id='weatherImg'/> " + toFixed((temp - 273.15), 2) + "\u2103, " + weatherType);
+    $("#weatherImg").attr("src","http://openweathermap.org/img/w/" + icon + ".png");
 }
 
 var legends = [];
@@ -17235,6 +17258,28 @@ function yyyymmdd() {
     return y + '-' + mm + '-' + dd + 'T' + hour + ':' + min + ':' + sec;
 }
 
+function yyyymmddForMinusDay(days) {
+    var today = new Date();
+    var now = new Date();
+    now.setDate(today.getDate() - days);
+    var y = now.getFullYear();
+    var m = now.getMonth() + 1;
+    var d = now.getDate();
+    var hour = now.getHours();
+    var min = now.getMinutes();
+    var sec = now.getSeconds();
+    var offset = now.getTimezoneOffset() / -60;
+    var mm = m < 10 ? '0' + m : m;
+    var dd = d < 10 ? '0' + d : d;
+    hour = hour < 10 ? '0' + hour : hour;
+    min = min < 10 ? '0' + min : min;
+    sec = sec < 10 ? '0' + sec : sec;
+    var offsetType = offset < 0 ? '-' : '+';
+    offset = offsetType == '-' ? offset*-1 : offset;
+    var offsetString = offset > -10 && offset < 10 ? '0' + offset : offset;
+    return y + '-' + mm + '-' + dd + 'T' + hour + ':' + min + ':' + sec + offsetType + offsetString + ":00";
+}
+
 function toFixed(value, precision) {
     var power = Math.pow(10, precision || 0);
     return Math.round(value * power) / power;
@@ -17403,6 +17448,22 @@ function drawGraphs() {
     weatherTypeChart.setOption(weatherTypeOptions);
 }
 
+global.setDataFromOneDay = function() {
+    data.dateStart = yyyymmddForMinusDay(1);
+};
+
+global.setDataFromOneWeek = function() {
+    data.dateStart = yyyymmddForMinusDay(7);
+};
+
+global.setDataFromOneMonth = function() {
+    data.dateStart = yyyymmddForMinusDay(30);
+};
+
+global.setDataAll = function() {
+    data.dateStart = "2018-11-07T00:00:00";
+};
+
 global.getDataForCharts = function() {
     $.ajax({
         url: uri,
@@ -17412,6 +17473,7 @@ global.getDataForCharts = function() {
         dataType: "json",
         success: function (response) {
             updateData(response);
+            getLatestData(response);
             setCountdownTimeAfterMinutes(10);
         }
     }).then(function () {

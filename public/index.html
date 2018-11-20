@@ -39,6 +39,7 @@
     <div id="bodyContainer">
         <div class="container">
             <div class="btn-group" role="group">
+                <button type="button" class="btn btn-dark btn-sm" id="DashButton" onclick="setVisible('Dashboard');">Dashboard</button>
                 <button type="button" class="btn btn-dark btn-sm" id="TempButton" onclick="setVisible('Temperature');">Temperature</button>
                 <button type="button" class="btn btn-dark btn-sm" id="WindButton" onclick="setVisible('WindSpeed');">Wind Speed</button>
                 <button type="button" class="btn btn-dark btn-sm" id="HumiButton" onclick="setVisible('Humidity');">Humidity</button>
@@ -69,7 +70,10 @@
                             Azure Table Storage
                         </p>
                     </p>
-                    <a href="#" class="btn btn-primary btn-lg" onclick="initApp();">Go to Data</a>
+                    <a href="#" class="dataBtn btn btn-primary btn-lg" onclick="setDataFromOneDay(); initApp();">Last 24 hours</a>
+                    <a href="#" class="dataBtn btn btn-primary btn-lg" onclick="setDataFromOneWeek(); initApp();">Last Week</a>
+                    <a href="#" class="dataBtn btn btn-primary btn-lg" onclick="setDataFromOneMonth(); initApp();">Last Month</a>
+                    <a href="#" class="dataBtn btn btn-primary btn-lg" onclick="setDataAll(); initApp();">Show All Data</a>
                 </div>
                 <div class="card-footer border-dark bg-transparent border-success">Created by <a href="http://koriseva.work">Timo Koriseva</a></div>
             </div>
@@ -78,6 +82,12 @@
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">Loading Weather Data...</div>
             </div>
         </div>
+
+        <div class="graph" id="Dashboard">
+            <p>Current Weather in Tampere, Finland</p>
+            <p id="currentWeather"></p>
+        </div>
+        
         <div class="graph" id="Temperature"></div>
         <div class="graph" id="WindSpeed"></div>
         <div class="graph" id="Humidity"></div>
