@@ -619,7 +619,7 @@ global.getDataForCharts = function() {
     }).then(function () {
         $('.progress').css('display', 'none');
         setVisible('Temperature');
-        $('.container').css('display', 'block');
+        $('.containerBar').css('display', 'block');
         $("#countdown").css("display", "block");
         $("small").css("display","block");
     });
